@@ -25,6 +25,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  SpinnerPlugin,
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -37,9 +38,10 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  SpinnerPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
-
+Vue.use(SpinnerPlugin);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent

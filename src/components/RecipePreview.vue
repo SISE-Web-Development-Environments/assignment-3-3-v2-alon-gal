@@ -1,8 +1,11 @@
 <template>
   <div class="recipe-preview">
     <div class="recipe-body">
-      <div :style="{ 'background-image': `url(${recipe.image})` }" class="recipe-image">
-      </div>
+              <div class="text-center">
+                  <b-spinner v-if="!isLoaded"  variant="primary" label="Text Centered"></b-spinner>
+              </div>
+          <img :src="recipe.image" class="recipe-image" @load="onImgLoad">
+
     </div>
     <div class="recipe-footer">
       <h5> {{ recipe.title }} </h5>
@@ -30,7 +33,7 @@ export default {
   },
   data() {
     return {
-      image_load: false
+      isLoaded: false
     };
   },
   props: {
@@ -72,6 +75,12 @@ export default {
     }
     */
     }
+  },
+
+  methods: {
+    onImgLoad () {
+      this.isLoaded = true
+    }
   }
 };
 </script>
@@ -81,9 +90,6 @@ export default {
   position: center;
   width: 100%;
   height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
 }
 .recipe-preview {
   display: inline-block;
@@ -97,8 +103,16 @@ export default {
 .recipe-preview .recipe-body {
   z-index: -1;
   width: 100%;
-  height: 200px;
+  height: 150px;
   position: relative;
+}
+
+.recipe-preview .recipe-body .text-center {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
 }
 
 .recipe-preview .recipe-body .recipe-image .star {
