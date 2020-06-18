@@ -4,10 +4,8 @@
       {{ title }}:
       <slot></slot>
     </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
+    <b-row v-for="r in recipes" :key="r.id">
+      <RecipePreview class="recipePreview" :recipe="r" />
     </b-row>
   </b-container>
 </template>
@@ -23,6 +21,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    reqType: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -36,10 +38,22 @@ export default {
   methods: {
     async updateRecipes() {
       try {
-        const response = await this.axios.get(
+
+        const type = this.$props.reqType;
+
+        var response;
+
+        if(type === "random"){
+        response = await this.axios.get(
           "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRandomRecipes/3"
         );
-
+        } else if(type === "watched"){
+          const user = this.$root.store.username;
+          response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched/" + user
+          );
+        }
+        
         // console.log(response);
         const recipes = response.data;
         this.recipes.push(...recipes);

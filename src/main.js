@@ -20,12 +20,14 @@ import {
   FormInputPlugin,
   ButtonPlugin,
   CardPlugin,
+  DropdownPlugin,
   NavbarPlugin,
   FormSelectPlugin,
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
   SpinnerPlugin,
+  NavPlugin,
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -33,15 +35,19 @@ import {
   FormInputPlugin,
   ButtonPlugin,
   CardPlugin,
+  DropdownPlugin,
   NavbarPlugin,
   FormSelectPlugin,
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
   SpinnerPlugin,
+  NavPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(SpinnerPlugin);
+Vue.use(NavPlugin);
+Vue.use(DropdownPlugin);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent

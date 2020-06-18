@@ -1,8 +1,14 @@
 <template>
   <div class="container">
     <h1 class="title">Main Page</h1>
-    <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
+    <b-container class="bv-example-row">
+  <b-row>
+    <b-col><RecipePreviewList reqType = "random" title="Explore These Recipes" class="RandomRecipes center" /></b-col>
+    <b-col><RecipePreviewList v-if="$root.store.username" reqType = "watched" title="Last watched recipes" class="RandomRecipes center" /></b-col>
+  </b-row>
+    </b-container>
+    
+    <!--<router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
     {{ !$root.store.username }}
     <RecipePreviewList
       title="Last Viewed Recipes"
@@ -12,7 +18,7 @@
         center: true
       }"
       disabled
-    ></RecipePreviewList>
+    ></RecipePreviewList>-->
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
@@ -24,6 +30,7 @@
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
 export default {
+    name: "Main",
   components: {
     RecipePreviewList
   }

@@ -21,7 +21,7 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username must contain only letters
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -90,6 +90,87 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+      <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          type="text"
+          v-model="$v.form.firstName.$model"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-else-if="!$v.form.firstName.alpha"
+        >
+          First name must contain only letters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          type="text"
+          v-model="$v.form.lastName.$model"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-else-if="!$v.form.lastName.alpha"
+        >
+          Last name must contain only letters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email Address:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          type="text"
+          v-model="$v.form.email.$model"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email address name is required
+        </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-if="!$v.form.email.email">
+          Please enter a valid email address
+        </b-form-invalid-feedback>
+      </b-form-group>
+      
+      <b-form-group
+        id="input-group-photoUrl"
+        label-cols-sm="3"
+        label="Profile Photo Url:"
+        label-for="photoUrl"
+      >
+        <b-form-input
+          id="photoUrl"
+          type="text"
+          v-model="$v.form.photoUrl.$model"
+          :state="validateState('photoUrl')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.photoUrl.required">
+          Photo Url is required
+        </b-form-invalid-feedback>
+      </b-form-group>
+
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button
         type="submit"
@@ -130,6 +211,7 @@ import {
   email
 } from "vuelidate/lib/validators";
 
+
 export default {
   name: "Register",
   data() {
@@ -142,6 +224,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
+        photoUrl: "",
         submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -163,6 +246,21 @@ export default {
         required,
         length: (p) => minLength(5)(p) && maxLength(10)(p)
       },
+      firstName:{
+        required,
+        alpha
+      },
+      lastName:{
+        required,
+        alpha
+      },
+      email:{
+          required,
+          email
+      },
+      photoUrl:{
+        required
+      },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
@@ -182,10 +280,16 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "https://assignment3-3-alon-gal.herokuapp.com/register",
           {
-            username: this.form.username,
-            password: this.form.password
+            userName: this.form.username,
+            password: this.form.password,
+            firstname: this.form.firstName,
+            lastname: this.form.lastName,
+            confirmedPassword: this.form.confirmedPassword,
+            email: this.form.email,
+            country: this.form.country,
+            photoUrl: this.form.photoUrl
           }
         );
         this.$router.push("/login");
