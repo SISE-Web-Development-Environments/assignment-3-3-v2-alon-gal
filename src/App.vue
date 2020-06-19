@@ -24,7 +24,7 @@
             <b-nav-item-dropdown
               v-else
               id="my-nav-dropdown"
-              text="User"
+              :text="$root.store.username"
               toggle-class="nav-link-custom"
               right
             >

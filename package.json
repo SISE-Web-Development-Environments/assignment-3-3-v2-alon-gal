@@ -2,7 +2,8 @@
   "name": "assignment-3-3",
   "version": "1.0.0",
   "scripts": {
-    "serve": "vue-cli-service serve"
+    "serve_task": "vue-cli-service serve src/main.js",
+    "build_task": "vue-cli-service build src/main.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

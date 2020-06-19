@@ -11,32 +11,22 @@
             <div class="mb-3">
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
               <div>Likes: {{ recipe.aggregateLikes }} likes</div>
-            </div>
-            Ingredients:
+            </div>Ingredients:
             <ul>
               <li
-                v-for="(r, index) in recipe.extendedIngredients"
+                v-for="(r, index) in recipe.Ingredients"
                 :key="index + '_' + r.id"
-              >
-                {{ r.original }}
-              </li>
+              >{{ r.original }}</li>
             </ul>
-          </div>
-          <div class="wrapped">
-            Instructions:
-            <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
-              </li>
-            </ol>
-          </div>
+          </div>Instructions:
+          <div class="wrapped" v-html="recipe.instructions"></div>
         </div>
       </div>
       <!-- <pre>
       {{ $route.params }}
       {{ recipe }}
     </pre
-      > -->
+      >-->
     </div>
   </div>
 </template>
@@ -45,7 +35,7 @@
 export default {
   data() {
     return {
-      recipe: null
+      recipe: null,
     };
   },
   async created() {
@@ -54,13 +44,26 @@ export default {
       // response = this.$route.params.response;
 
       try {
+        const id = this.$route.params.recipeId;
         response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/info",
-          {
-            params: { id: this.$route.params.recipeId }
-          }
+          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + id
         );
-
+        if (this.$root.store.username) {
+          await this.axios.post(
+            "https://assignment3-3-alon-gal.herokuapp.com/users/watched",
+           {
+             userName: this.$root.store.username,
+            recipe_id: id
+            }
+          );
+          await this.axios.post(
+            "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched",
+            {
+              userName: this.$root.store.username,
+              recipe_id: id
+            }
+          );
+        }
         // console.log("response.status", response.status);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
@@ -70,31 +73,35 @@ export default {
       }
 
       let {
-        analyzedInstructions,
+        id,
         instructions,
-        extendedIngredients,
+        Ingredients,
         aggregateLikes,
         readyInMinutes,
         image,
-        title
-      } = response.data.recipe;
-
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
+        title,
+        vegan,
+        vegetarian,
+        glutenFree,
+        servings,
+        favorited,
+        watched
+      } = response.data;
 
       let _recipe = {
+        id,
         instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
+        Ingredients,
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
+        vegan,
+        vegetarian,
+        glutenFree,
+        servings,
+        favorited,
+        watched
       };
 
       this.recipe = _recipe;

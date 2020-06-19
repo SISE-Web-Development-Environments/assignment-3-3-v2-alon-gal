@@ -1,5 +1,5 @@
 <template>
-  <div class="recipe-preview">
+<router-link :to="{name: 'recipe', params:{recipeId: recipe.id}}" class="recipe-preview">
     <div class="recipe-body">
               <div class="text-center">
                   <b-spinner v-if="!isLoaded"  variant="primary" label="Text Centered"></b-spinner>
@@ -21,7 +21,7 @@
       </div>
       <br>
     </div>
-  </div>
+</router-link>
 </template>
 
 <script>
@@ -64,7 +64,11 @@ export default {
     glutenFree:{
       type: Boolean,
       required: true
-    }/*,
+    },
+    id:{
+      type: Number
+    }
+    /*,
     watched:{
       type: Boolean,
       required: true
@@ -80,7 +84,8 @@ export default {
   methods: {
     onImgLoad () {
       this.isLoaded = true
-    }
+    },
+
   }
 };
 </script>

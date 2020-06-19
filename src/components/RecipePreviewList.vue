@@ -5,7 +5,7 @@
       <slot></slot>
     </h3>
     <b-row v-for="r in recipes" :key="r.id">
-      <RecipePreview class="recipePreview" :recipe="r" />
+      <RecipePreview v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r" />
     </b-row>
   </b-container>
 </template>
@@ -53,11 +53,8 @@ export default {
           "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched/" + user
           );
         }
-        
-        // console.log(response);
         const recipes = response.data;
         this.recipes.push(...recipes);
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -69,5 +66,9 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+
+.recipePreview{
+  cursor: pointer;
 }
 </style>
