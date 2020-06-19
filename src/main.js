@@ -28,7 +28,8 @@ import {
   LayoutPlugin,
   SpinnerPlugin,
   NavPlugin,
-  VBTooltipPlugin
+  VBTooltipPlugin,
+  IconsPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -44,13 +45,15 @@ import {
   LayoutPlugin,
   SpinnerPlugin,
   NavPlugin,
-  VBTooltipPlugin
+  VBTooltipPlugin,
+  IconsPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(SpinnerPlugin);
 Vue.use(NavPlugin);
 Vue.use(DropdownPlugin);
 Vue.use(VBTooltipPlugin);
+Vue.use(IconsPlugin);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent

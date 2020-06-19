@@ -1,27 +1,30 @@
 <template>
-<router-link :to="{name: 'recipe', params:{recipeId: recipe.id}}" class="recipe-preview">
+  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id}}" class="recipe-preview">
     <div class="recipe-body">
-              <div class="text-center">
-                  <b-spinner v-if="!isLoaded"  variant="primary" label="Text Centered"></b-spinner>
-              </div>
-          <img :src="recipe.image" class="recipe-image" @load="onImgLoad">
-
+      <div class="text-center">
+        <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
+      </div>
+      <img v-if="isFavorite" src="../assets/star2.png" class="star" style="float: right;" />
+      <img v-if="isWatched" src="../assets/watched.png" class="star" style="float: right;" />
+      <img :src="recipe.image" class="recipe-image" @load="onImgLoad" />
     </div>
     <div class="recipe-footer">
-      <h5> {{ recipe.title }} </h5>
-      <img class="icon" src="../assets/clock.png"> Duration: {{ recipe.readyInMinutes }}<br>
+      <h5>{{ recipe.title }}</h5>
+      <img class="icon" src="../assets/clock.png" />
+      Duration: {{ recipe.readyInMinutes }}
+      <br />
       <div v-if="recipe.glutenFree">
-      <img  class="icon" src="../assets/glutenfree.png"> Gluten Free
+        <img class="icon" src="../assets/glutenfree.png" /> Gluten Free
       </div>
       <div v-if="recipe.vegetarian">
-        <img  class="icon" src="../assets/vegetarian.png"> Vegetarian
+        <img class="icon" src="../assets/vegetarian.png" /> Vegetarian
       </div>
       <div v-if="recipe.vegan">
-        <img  class="icon" src="../assets/vegan.png"> Vegan
+        <img class="icon" src="../assets/vegan.png" /> Vegan
       </div>
-      <br>
+      <br />
     </div>
-</router-link>
+  </router-link>
 </template>
 
 <script>
@@ -33,42 +36,44 @@ export default {
   },
   data() {
     return {
-      isLoaded: false
+      isLoaded: false,
+      isFavorite: false,
+      isWatched: false
     };
   },
   props: {
     recipe: {
       image: {
-      type: String,
-      required: false,
-      default: function () {
-        return { image: "../assets/nophoto.png" }
+        type: String,
+        required: false,
+        default: function() {
+          return { image: "../assets/nophoto.png" };
+        }
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      readyInMinutes: {
+        type: Number,
+        required: true
+      },
+      vegetarian: {
+        type: String,
+        required: true
+      },
+      vegan: {
+        type: String,
+        required: true
+      },
+      glutenFree: {
+        type: Boolean,
+        required: true
+      },
+      id: {
+        type: Number
       }
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    readyInMinutes: {
-      type: Number,
-      required: true
-    },
-    vegetarian:{
-      type: String,
-      required: true
-    },
-    vegan:{
-      type: String,
-      required: true
-    },
-    glutenFree:{
-      type: Boolean,
-      required: true
-    },
-    id:{
-      type: Number
-    }
-    /*,
+      /*,
     watched:{
       type: Boolean,
       required: true
@@ -80,12 +85,42 @@ export default {
     */
     }
   },
-
+  mounted() {
+    this.checkIfFavorite();
+    this.checkIfWatched();
+  },
   methods: {
-    onImgLoad () {
-      this.isLoaded = true
+    onImgLoad() {
+      this.isLoaded = true;
     },
-
+    async checkIfFavorite() {
+      if (this.$root.store.username) {
+        let response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" +
+            this.$root.store.username
+        );
+        let rcpid = this.$props.recipe.id;
+        for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
+          if (response.data.favoriteRecipes[i] == rcpid) {
+            this.isFavorite = true;
+          }
+        }
+      }
+    },
+    async checkIfWatched() {
+      if (this.$root.store.username) {
+        let response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/watched/" +
+            this.$root.store.username
+        );
+        let rcpid = this.$props.recipe.id;
+        for (let i = 0; i < response.data.myRecipes.length; i++) {
+          if (response.data.myRecipes[i] == rcpid) {
+            this.isWatched = true;
+          }
+        }
+      }
+    }
   }
 };
 </script>
@@ -95,6 +130,10 @@ export default {
   position: center;
   width: 100%;
   height: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .recipe-preview {
   display: inline-block;
@@ -120,16 +159,15 @@ export default {
   position: absolute;
 }
 
-.recipe-preview .recipe-body .recipe-image .star {
-  position: left;
-  height: 50px;
-  width: 50px;
-
-}
-
-.recipe-preview .recipe-footer .icon{
+.icon {
   height: 23px;
   width: 23px;
+  position: relative;
 }
 
+.star {
+  height: 45px;
+  width: 45px;
+  position: relative;
+}
 </style>

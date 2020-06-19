@@ -28,6 +28,15 @@
     </pre
       >-->
     </div>
+    <div class="options">
+      <b-button
+        v-if="$root.store.username"
+        variant="outline-primary"
+        v-on:click="addToFavorites(recipe.id)"
+      >
+        <b-icon icon="star"></b-icon>Add to Favorites
+      </b-button>
+    </div>
   </div>
 </template>
 
@@ -35,7 +44,7 @@
 export default {
   data() {
     return {
-      recipe: null,
+      recipe: null
     };
   },
   async created() {
@@ -51,9 +60,9 @@ export default {
         if (this.$root.store.username) {
           await this.axios.post(
             "https://assignment3-3-alon-gal.herokuapp.com/users/watched",
-           {
-             userName: this.$root.store.username,
-            recipe_id: id
+            {
+              userName: this.$root.store.username,
+              recipe_id: id
             }
           );
           await this.axios.post(
@@ -108,6 +117,31 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  methods: {
+    async addToFavorites(rcpid) {
+      try {
+        await this.axios.post(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favorites",
+          {
+            userName: this.$root.store.username,
+            recipe_id: rcpid
+          }
+        );
+        this.$root.toast(
+          "Added to Favorites",
+          "Recipe added successfully to your favorite list!",
+          "warning"
+        );
+      } catch {
+        this.$root.toast(
+          "Already added",
+          "This recipe is already on your favorite list",
+          "primary"
+        );
+      }
+    }
   }
 };
 </script>
@@ -124,6 +158,11 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+.container .options {
+  align-content: center;
+  text-align: center;
+  height: 100px;
 }
 /* .recipe-header{
 
