@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <div v-if="recipe">
+      <div class="text-center">
+      
+      </div>
       <div class="recipe-header mt-3 mb-4">
         <h1>{{ recipe.title }}</h1>
-        <img :src="recipe.image" class="center" />
+        <img :src="recipe.image" class="center" @load="onImgLoad" />
       </div>
       <div class="recipe-body">
         <div class="wrapper">
@@ -29,8 +32,9 @@
       >-->
     </div>
     <div class="options">
+        <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       <b-button
-        v-if="$root.store.username"
+        v-else-if="$root.store.username"
         variant="outline-primary"
         v-on:click="addToFavorites(recipe.id)"
       >
@@ -42,8 +46,17 @@
 
 <script>
 export default {
+  mounted() {
+    if(!this.recipe){
+      return;
+    }
+    this.axios.get(this.recipe.image).then(i => {
+      this.image_load = true;
+    });
+  },
   data() {
     return {
+      isLoaded: false,
       recipe: null
     };
   },
@@ -120,6 +133,9 @@ export default {
   },
 
   methods: {
+    onImgLoad() {
+      this.isLoaded = true;
+    },
     async addToFavorites(rcpid) {
       try {
         await this.axios.post(

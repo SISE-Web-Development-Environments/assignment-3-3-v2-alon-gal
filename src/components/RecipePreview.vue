@@ -4,8 +4,6 @@
       <div class="text-center">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       </div>
-      <img v-if="isFavorite" src="../assets/star2.png" class="star" style="float: right;" />
-      <img v-if="isWatched" src="../assets/watched.png" class="star" style="float: right;" />
       <img :src="recipe.image" class="recipe-image" @load="onImgLoad" />
     </div>
     <div class="recipe-footer">
@@ -22,8 +20,11 @@
       <div v-if="recipe.vegan">
         <img class="icon" src="../assets/vegan.png" /> Vegan
       </div>
-      <br />
     </div>
+    <div class="recipe-icons">
+      <img v-if="isFavorite" src="../assets/star2.png" class="star">
+      <img v-if="isWatched" src="../assets/watched.png" class="star">
+      </div>
   </router-link>
 </template>
 
@@ -130,7 +131,6 @@ export default {
   position: center;
   width: 100%;
   height: 100%;
-  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
@@ -159,6 +159,15 @@ export default {
   position: absolute;
 }
 
+.recipe-preview .recipe-footer{
+  background-color: #FFFACD;
+}
+
+.recipe-icons{
+background-color: #FFFACD;
+text-align: right;
+}
+
 .icon {
   height: 23px;
   width: 23px;
@@ -168,6 +177,6 @@ export default {
 .star {
   height: 45px;
   width: 45px;
-  position: relative;
+  position:initial;
 }
 </style>
