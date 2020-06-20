@@ -10,6 +10,10 @@
       <h5>{{ recipe.title }}</h5>
       <img class="icon" src="../assets/clock.png" />
       Duration: {{ recipe.readyInMinutes }}
+      <div style="float: right; margin-right: 10px ;">
+      <img class="icon" src="../assets/like.png"  />
+      Likes: {{recipe.aggregateLikes}}
+      </div>
       <br />
       <div v-if="recipe.glutenFree">
         <img class="icon" src="../assets/glutenfree.png" /> Gluten Free
@@ -73,17 +77,11 @@ export default {
       },
       id: {
         type: Number
+      },
+      aggregateLikes:{
+        type: Number,
+        required: true
       }
-      /*,
-    watched:{
-      type: Boolean,
-      required: true
-    },
-    favorites:{
-        type: Boolean,
-      required: true
-    }
-    */
     }
   },
   mounted() {
@@ -145,7 +143,6 @@ export default {
   border-radius: 10px;
 }
 .recipe-preview .recipe-body {
-  z-index: -1;
   width: 100%;
   height: 150px;
   position: relative;
@@ -166,6 +163,7 @@ export default {
 .recipe-icons{
 background-color: #FFFACD;
 text-align: right;
+
 }
 
 .icon {
