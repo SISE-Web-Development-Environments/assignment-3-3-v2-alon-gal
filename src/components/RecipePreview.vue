@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="recipe-icons">
-      <img v-if="isFavorite" src="../assets/star2.png" class="star">
-      <img v-if="isWatched" src="../assets/watched.png" class="star">
+      <img v-if="isFavorite" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
+      <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
       </div>
   </router-link>
 </template>

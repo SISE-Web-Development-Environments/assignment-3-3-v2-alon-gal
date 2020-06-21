@@ -5,24 +5,34 @@
       
       </div>
       <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
+        <h1 class="title">{{ recipe.title }}</h1>
         <img :src="recipe.image" class="center" @load="onImgLoad" />
+        <img v-if="isFavorite" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" style="display: inline-block;" class="star">
+        <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
       </div>
+                    <b-container fluid class="bv-example-row">
+                  <b-row>
+                    <b-col class="bcol"><img class="icon" src="../assets/clock.png" style="  margin-right: 6px;" />Ready in {{ recipe.readyInMinutes }} minutes</b-col>
+                    <b-col class="bcol"><img class="icon" src="../assets/like.png" style="  margin-right: 6px;" />Likes: {{ recipe.aggregateLikes }} likes</b-col>
+                    <b-col class="bcol" v-if="recipe.glutenFree"><img class="icon" src="../assets/glutenfree.png" /> Gluten Free</b-col>
+                    <b-col class="bcol" v-if="recipe.vegetarian"><img class="icon" src="../assets/vegetarian.png" /> Vegetarian</b-col>
+                    <b-col class="bcol" v-if="recipe.vegan"><img class="icon" src="../assets/vegan.png" /> Vegan</b-col>
+                    </b-row>
+              </b-container>
       <div class="recipe-body">
         <div class="wrapper">
-          <div class="wrapped">
-            <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
-            </div>Ingredients:
+          <div class="wrapped" style="margin-right: 10px;">
+            <b>Ingredients:</b><br><br>
             <ul>
               <li
                 v-for="(r, index) in recipe.Ingredients"
                 :key="index + '_' + r.id"
               >{{ r.original }}</li>
             </ul>
-          </div>Instructions:
-          <div class="wrapped" v-html="recipe.instructions"></div>
+          </div>
+          <div class="wrapped"><b>Instructions:</b><br><br>
+          <div v-html="recipe.instructions" style="width: 100%; padding-left: 20px; padding-right: 20px;"></div>
+          </div>
         </div>
       </div>
       <!-- <pre>
@@ -53,11 +63,14 @@ export default {
     this.axios.get(this.recipe.image).then(i => {
       this.image_load = true;
     });
+
   },
   data() {
     return {
       isLoaded: false,
-      recipe: null
+      recipe: null,
+      isFavorite: false,
+      isWatched: false
     };
   },
   async created() {
@@ -127,6 +140,8 @@ export default {
       };
 
       this.recipe = _recipe;
+    this.checkIfFavorite();
+    this.checkIfWatched();
     } catch (error) {
       console.log(error);
     }
@@ -157,6 +172,34 @@ export default {
           "primary"
         );
       }
+    },
+        async checkIfFavorite() {
+      if (this.$root.store.username) {
+        let response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" +
+            this.$root.store.username
+        );
+        let rcpid = this.recipe.id;
+        for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
+          if (response.data.favoriteRecipes[i] == rcpid) {
+            this.isFavorite = true;
+          }
+        }
+      }
+    },
+        async checkIfWatched() {
+      if (this.$root.store.username) {
+        let response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/watched/" +
+            this.$root.store.username
+        );
+        let rcpid = this.recipe.id;
+        for (let i = 0; i < response.data.myRecipes.length; i++) {
+          if (response.data.myRecipes[i] == rcpid) {
+            this.isWatched = true;
+          }
+        }
+      }
     }
   }
 };
@@ -168,6 +211,11 @@ export default {
 }
 .wrapped {
   width: 50%;
+  border-radius: 5px 5px 5px 5px;
+  border: 3px double black;
+  margin-bottom: 20px;
+    background-color: #E6E6FA;
+
 }
 .center {
   display: block;
@@ -180,7 +228,32 @@ export default {
   text-align: center;
   height: 100px;
 }
-/* .recipe-header{
+.bv-example-row {
 
-} */
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+  border: 3px double black;
+  margin-bottom: 20px;
+    background-color: #E6E6FA;
+}
+
+.bcol{
+  margin-top: 15px;
+  margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  position: relative;
+}
+
+.title{
+   font: italic 1.2em "Fira Sans", serif; 
+   font-size: 50px;
+   font-weight: bold;
+   margin-bottom: 30px;
+}
+
 </style>
