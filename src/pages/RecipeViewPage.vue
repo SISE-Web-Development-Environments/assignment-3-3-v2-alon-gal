@@ -23,7 +23,9 @@
         <div class="wrapper">
           <div class="wrapped" style="margin-right: 10px;">
             <b>Ingredients:</b><br><br>
-            <ul>
+            <ul v-if="$route.params.fromAPIp === 'true'" v-html="recipe.Ingredients">
+            </ul>
+            <ul v-else>
               <li
                 v-for="(r, index) in recipe.Ingredients"
                 :key="index + '_' + r.id"

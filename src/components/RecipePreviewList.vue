@@ -137,6 +137,18 @@ export default {
             }
           }
           response = await this.axios.get(toSend);
+        }        else if(type === "showFavorite"){
+          const user = this.$root.store.username;
+          res = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" + user
+          
+        );
+        for(let i = 0; i < res.data.favoriteRecipes.length; i++){
+          rcp = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + res.data.favoriteRecipes[i]
+        );
+          response.data.push(rcp.data);
+        }
         }
 
         const recipes = response.data;

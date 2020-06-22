@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-       <RecipePreviewList reqType = "show" title="My Favorites" class="ShowRecipes" />
+       <RecipePreviewList reqType = "showFavorite" title="My Favorites" class="ShowRecipes" />
   </div>
 </template>
 
