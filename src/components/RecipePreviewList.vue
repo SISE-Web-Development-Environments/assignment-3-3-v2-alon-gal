@@ -107,7 +107,7 @@ export default {
         for(let i = 0; i < res.data.myRecipes.length; i++){
           response.data.push(res.data.myRecipes[i]);
         }
-        } else if(type == "search"){
+        } else if(type === "search"){
           this.isSearch=true
           const number = this.$props.numberOfResult;
           const search = this.$props.searchQuery;

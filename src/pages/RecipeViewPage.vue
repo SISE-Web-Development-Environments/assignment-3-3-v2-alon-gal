@@ -85,7 +85,7 @@ export default {
         a = this.$route.params.fromAPIp;
         if(a=="true"){
         response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/" + id
+          "https://assignment3-3-alon-gal.herokuapp.com/users/getRecipes/" + id
         );
         }
         else{
@@ -113,6 +113,7 @@ export default {
         if (response.status !== 200 && response.status !== 201) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
+        console.log(error);
         this.$router.replace("/NotFound");
         return;
       }
