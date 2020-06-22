@@ -84,9 +84,8 @@ export default {
         const id = this.$route.params.recipeId;
         a = this.$route.params.fromAPIp;
         if(a=="true"){
-          let userName= this.$root.store.username;
         response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/" + userName
+          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/" + id
         );
         }
         else{

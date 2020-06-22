@@ -31,6 +31,7 @@
             >
               <b-dropdown-item :to="{ name: 'myrecipes'}"><b-icon  icon="heart"></b-icon> My Recipes</b-dropdown-item>
               <b-dropdown-item :to="{ name: 'myfavoriterecipes'}"><b-icon  icon="star"></b-icon> My Favorite Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'myfamilyrecipes'}"><b-icon  icon="people"></b-icon> My Family Recipes</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
               <b-dropdown-item @click="Logout"><b-icon  icon="box-arrow-in-right"></b-icon> Logout</b-dropdown-item>
             </b-nav-item-dropdown>

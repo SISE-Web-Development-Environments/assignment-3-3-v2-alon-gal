@@ -175,25 +175,28 @@ VALUES
     <li> Fresh lemon wedges for garnish </li>',
     4
     ),
-    (N'alongolo', 1, N'https://toriavey.com/images/2011/02/TOA20_03-740x740.jpg', N'Chicken Schnitzel', 45 , 0, 0, 1, 100,
-    N'<li> 1 lb boneless skinless chicken breasts (2 large breasts) </li> 
-    <li> 1/2 cup flour </li> 
-    <li> 2 large eggs </li> 
-    <li> 1 cup breadcrumbs, matzo meal, or panko </li> 
-    <li> 1 tbsp paprika </li> 
-    <li> 1 tbsp sesame seeds (optional) </li>
-    <li> 1/4 tsp salt, or more to taste </li>
-    <li> Oil for frying, avocado oil or grapeseed oil both work well </li>
-    <li> Fresh lemon wedges for garnish </li>',
-    N'<li> 1 lb boneless skinless chicken breasts (2 large breasts) </li> 
-    <li> 1/2 cup flour </li> 
-    <li> 2 large eggs </li> 
-    <li> 1 cup breadcrumbs, matzo meal, or panko </li> 
-    <li> 1 tbsp paprika </li> 
-    <li> 1 tbsp sesame seeds (optional) </li>
-    <li> 1/4 tsp salt, or more to taste </li>
-    <li> Oil for frying, avocado oil or grapeseed oil both work well </li>
-    <li> Fresh lemon wedges for garnish </li>',
+    (N'alongolo', 2, N'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2F201105-xl-quick-shrimp-pad-thai.jpg%3Fitok%3DA-yFs34H', N'Easy Pad Thai', 45 , 0, 0, 1, 50,
+    N'<li> Kosher salt </li> 
+    <li>8 oz. wide rice noodles </li> 
+    <li> 2 tbsp. lime juice </li> 
+    <li> 2 tbsp. brown sugar </li> 
+    <li> 1 tbsp. fish sauce </li> 
+    <li> 1 tbsp. low-sodium soy sauce (optional) </li>
+    <li> 1/4 tsp. cayenne pepper </li>
+    <li> 2 tbsp. vegetable oil </li>
+    <li> 1 bell pepper, thinly sliced </li>
+    <li> 2 cloves garlic, minced </li>
+    <li> 2 eggs, lightly whisked </li>
+    <li> 1 lb. shrimp, peeled and deveined </li>
+    <li> Freshly ground black pepper </li>
+    <li> 2 green onions, thinly sliced </li>
+    <li> 1/4 c. roasted peanuts, chopped </li>'
+    ,
+    N'<li> In a large pot of salted boiling water, cook noodles until al dente. Drain. </li> 
+    <li> In a small bowl, whisk together lime juice, brown sugar, fish sauce, soy sauce, and cayenne pepper. Set aside. </li> 
+    <li> In a large nonstick pan over medium-high heat, heat oil. Add bell pepper and cook until tender, about 4 minutes. Stir in garlic and cook until fragrant, about 1 minute more. Add the shrimp and season with salt and pepper. Cook until pink, about 2 minutes per side. </li> 
+    <li> Push the shrimp and vegetables to one side of the pan and pour in the egg. Scramble until just set then mix with the shrimp mixture. Add the cooked noodles and toss until combined. Pour in the lime juice mixture and toss until the noodles are coated. </li> 
+    <li> Garnish with green onions and roasted peanuts before serving. </li>',
     4
     )
 
