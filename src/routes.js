@@ -28,6 +28,11 @@ const routes = [
     component: () => import("./pages/RecipeViewPage"),
   },
   {
+    path: "/myrecipes",
+    name: "myrecipes",
+    component: () => import("./pages/MyRecipesPage"),
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound,

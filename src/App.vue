@@ -8,18 +8,19 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item active :to="{ name: 'main' }">Home</b-nav-item>
-            <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
-            <b-nav-item-dropdown
+            <b-nav-item active :to="{ name: 'main' }"> <b-icon  icon="house-fill"></b-icon> Home</b-nav-item>
+            <b-nav-item active :to="{ name: 'search' }"><b-icon  icon="search"></b-icon> Search</b-nav-item>
+            <b-nav-item-dropdown 
               v-if="!$root.store.username"
               id="my-nav-dropdown"
               text="Hello Guest"
               toggle-class="nav-link-custom"
               right
+              active
             >
-              <b-dropdown-item :to="{ name: 'login' }">Login</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'login' }"> <b-icon  icon="person-check"></b-icon> Login</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item :to="{ name: 'register' }">Register</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'register' }"><b-icon  icon="pencil-square"></b-icon> Register</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item-dropdown
               v-else
@@ -28,14 +29,19 @@
               toggle-class="nav-link-custom"
               right
             >
-              <b-dropdown-item @click="Logout">Logout</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'myrecipes'}"><b-icon  icon="heart"></b-icon> My Recipes</b-dropdown-item>
+              <b-dropdown-divider></b-dropdown-divider>
+              <b-dropdown-item @click="Logout"><b-icon  icon="box-arrow-in-right"></b-icon> Logout</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-form>
-              <b-nav-item>About</b-nav-item>
+              <b-nav-item active v-b-modal.modalPopover> <b-icon  icon="info-circle"></b-icon> About</b-nav-item>
+              <b-modal id="modalPopover" title="Modal with Popover" ok-only>
+                <p>test</p>
+              </b-modal>
             </b-nav-form>
           </b-navbar-nav>
         </b-collapse>
