@@ -46,7 +46,7 @@
     <div class="options">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       <b-button
-        v-else-if="$root.store.username"
+        v-else-if="$root.store.username && $route.params.fromAPIp !== 'true'"
         variant="warning"
         v-on:click="addToFavorites(recipe.id)"
       >
