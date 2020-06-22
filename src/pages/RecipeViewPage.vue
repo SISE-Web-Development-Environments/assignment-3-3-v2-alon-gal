@@ -77,12 +77,21 @@ export default {
     try {
       let response;
       // response = this.$route.params.response;
-
+      let a;
       try {
         const id = this.$route.params.recipeId;
+        a = this.$route.params.fromAPIp;
+        if(a=="true"){
+          let userName= this.$root.store.username;
+        response = await this.axios.get(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/" + userName
+        );
+        }
+        else{
         response = await this.axios.get(
           "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + id
         );
+        }
         if (this.$root.store.username) {
           await this.axios.post(
             "https://assignment3-3-alon-gal.herokuapp.com/users/watched",
@@ -100,13 +109,15 @@ export default {
           );
         }
         // console.log("response.status", response.status);
-        if (response.status !== 200) this.$router.replace("/NotFound");
+        if (response.status !== 200 && response.status !== 201) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
         this.$router.replace("/NotFound");
         return;
       }
+      
 
+      if(a=="true"){
       let {
         id,
         instructions,
@@ -121,8 +132,8 @@ export default {
         servings,
         favorited,
         watched
-      } = response.data;
-
+      } = response.data.myRecipes[0];
+      
       let _recipe = {
         id,
         instructions,
@@ -138,10 +149,46 @@ export default {
         favorited,
         watched
       };
-
+      
       this.recipe = _recipe;
     this.checkIfFavorite();
     this.checkIfWatched();
+      }else{
+      let {
+        id,
+        instructions,
+        Ingredients,
+        aggregateLikes,
+        readyInMinutes,
+        image,
+        title,
+        vegan,
+        vegetarian,
+        glutenFree,
+        servings,
+        favorited,
+        watched
+      } = response.data;
+      
+      let _recipe = {
+        id,
+        instructions,
+        Ingredients,
+        aggregateLikes,
+        readyInMinutes,
+        image,
+        title,
+        vegan,
+        vegetarian,
+        glutenFree,
+        servings,
+        favorited,
+        watched
+      };
+  this.recipe = _recipe;
+    this.checkIfFavorite();
+    this.checkIfWatched();
+      }
     } catch (error) {
       console.log(error);
     }

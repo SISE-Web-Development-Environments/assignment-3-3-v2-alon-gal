@@ -11,7 +11,7 @@
       </b-button-group>
     </div>
     <b-row v-for="r in recipes" :key="r.id">
-      <RecipePreview v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r" />
+      <RecipePreview :fromAPIp="fromAPI"  v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r"/>
     </b-row>
   </b-container>
 </template>
@@ -51,6 +51,9 @@ export default {
     intolerances:{
       type: String,
       required: false
+    },
+    fromAPI:{
+      type: String
     }
   },
   data() {
@@ -63,6 +66,7 @@ export default {
     this.updateRecipes();
   },
   methods: {
+    
     timeSorting(){
       this.recipes.sort(function (a, b) {
         return a.readyInMinutes - b.readyInMinutes;
@@ -72,6 +76,9 @@ export default {
         this.recipes.sort(function (a, b) {
         return b.aggregateLikes - a.aggregateLikes;
       })
+    },
+    test(){
+      let a = 2;
     },
     async updateRecipes() {
       try {
@@ -98,10 +105,7 @@ export default {
           
         );
         for(let i = 0; i < res.data.myRecipes.length; i++){
-          rcp = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + res.data.myRecipes[i]
-        );
-          response.data.push(rcp.data);
+          response.data.push(res.data.myRecipes[i]);
         }
         } else if(type == "search"){
           this.isSearch=true

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <RecipePreviewList fromAPI = "true" reqType = "show" title="My Recipes" class="ShowRecipes"  />
+       <RecipePreviewList reqType = "show" title="My Family" class="ShowRecipes" />
   </div>
 </template>
 
@@ -13,7 +13,6 @@ export default {
     RecipePreviewList
   }
 };
-
 </script>
 <style lang="scss" scoped>
 </style>

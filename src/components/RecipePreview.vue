@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id}}" class="recipe-preview">
+  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id, fromAPIp: fromAPIp}}" class="recipe-preview">
     <div class="recipe-body">
       <div class="text-center">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
@@ -82,6 +82,9 @@ export default {
         type: Number,
         required: true
       }
+    },
+    fromAPIp:{
+      type: String
     }
   },
   mounted() {
@@ -93,6 +96,11 @@ export default {
       this.isLoaded = true;
     },
     async checkIfFavorite() {
+
+      let  a= this.$props.fromAPIp;
+      if(a == true){
+
+      }
       if (this.$root.store.username) {
         let response = await this.axios.get(
           "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" +
