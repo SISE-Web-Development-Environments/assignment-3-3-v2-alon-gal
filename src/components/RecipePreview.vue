@@ -64,11 +64,11 @@ export default {
         required: true
       },
       vegetarian: {
-        type: String,
+        type: Boolean,
         required: true
       },
       vegan: {
-        type: String,
+        type: Boolean,
         required: true
       },
       glutenFree: {

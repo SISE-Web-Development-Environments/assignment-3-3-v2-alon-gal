@@ -45,7 +45,7 @@
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       <b-button
         v-else-if="$root.store.username"
-        variant="outline-primary"
+        variant="warning"
         v-on:click="addToFavorites(recipe.id)"
       >
         <b-icon icon="star"></b-icon>Add to Favorites
@@ -165,6 +165,7 @@ export default {
           "Recipe added successfully to your favorite list!",
           "warning"
         );
+        this.isFavorite = true;
       } catch {
         this.$root.toast(
           "Already added",
