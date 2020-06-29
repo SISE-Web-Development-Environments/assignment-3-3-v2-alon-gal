@@ -97,14 +97,12 @@ export default {
           await this.axios.post(
             "https://assignment3-3-alon-gal.herokuapp.com/users/watched",
             {
-              userName: this.$root.store.username,
               recipe_id: id
             }
           );
           await this.axios.post(
             "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched",
             {
-              userName: this.$root.store.username,
               recipe_id: id
             }
           );
@@ -205,7 +203,6 @@ export default {
         await this.axios.post(
           "https://assignment3-3-alon-gal.herokuapp.com/users/favorites",
           {
-            userName: this.$root.store.username,
             recipe_id: rcpid
           }
         );
@@ -226,8 +223,7 @@ export default {
         async checkIfFavorite() {
       if (this.$root.store.username) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" +
-            this.$root.store.username
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId"
         );
         let rcpid = this.recipe.id;
         for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
@@ -240,8 +236,7 @@ export default {
         async checkIfWatched() {
       if (this.$root.store.username) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/watched/" +
-            this.$root.store.username
+          "https://assignment3-3-alon-gal.herokuapp.com/users/watched"
         );
         let rcpid = this.recipe.id;
         for (let i = 0; i < response.data.myRecipes.length; i++) {

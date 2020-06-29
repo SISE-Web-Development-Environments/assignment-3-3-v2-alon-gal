@@ -94,14 +94,12 @@ export default {
           "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRandomRecipes/3"
         );
         } else if(type === "watched"){
-          const user = this.$root.store.username;
           response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched/" + user
+          "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched/"
           );
         } else if(type === "show"){
-          const user = this.$root.store.username;
           res = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/" + user
+          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/"
           
         );
         for(let i = 0; i < res.data.myRecipes.length; i++){
@@ -138,9 +136,8 @@ export default {
           }
           response = await this.axios.get(toSend);
         }        else if(type === "showFavorite"){
-          const user = this.$root.store.username;
           res = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" + user
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/"
           
         );
         for(let i = 0; i < res.data.favoriteRecipes.length; i++){

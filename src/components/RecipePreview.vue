@@ -103,8 +103,7 @@ export default {
       }
       if (this.$root.store.username) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/" +
-            this.$root.store.username
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId"
         );
         let rcpid = this.$props.recipe.id;
         for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
@@ -117,8 +116,7 @@ export default {
     async checkIfWatched() {
       if (this.$root.store.username) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/watched/" +
-            this.$root.store.username
+          "https://assignment3-3-alon-gal.herokuapp.com/users/watched"
         );
         let rcpid = this.$props.recipe.id;
         for (let i = 0; i < response.data.myRecipes.length; i++) {
