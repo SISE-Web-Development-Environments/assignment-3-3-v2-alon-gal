@@ -3,16 +3,16 @@
     <h1 class="title">Main Page</h1>
     <b-container class="bv-example-row">
   <b-row>
-    <b-col><RecipePreviewList fromAPI="false" reqType = "random" title="Explore These Recipes" class="RandomRecipes" :key="componentKey" />
+    <b-col><RecipePreviewList notFromAPI="false" reqType = "random" title="Explore These Recipes" class="RandomRecipes" :key="componentKey" />
      <button type="button"  v-on:click="onRefresh" class="btn btn-primary">Refresh recipes</button>
     </b-col>
     <b-col>
       <div v-if="$root.store.username">
-      <RecipePreviewList fromAPI="false" reqType = "watched" title="Last watched recipes" class="RandomRecipes" />
+      <RecipePreviewList notFromAPI="false" reqType = "watched" title="Last watched recipes" class="RandomRecipes" />
       </div>
       <div v-else>
         <br><h6> You need to Login to view this</h6>
-      <RecipePreviewList fromAPI="false" reqType = "random" title="Last watched recipes" :class="{
+      <RecipePreviewList notFromAPI="false" reqType = "random" title="Last watched recipes" :class="{
         RandomRecipes: true,
         blur: !$root.store.username,
         center: true

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id, fromAPIp: fromAPIp}}" class="recipe-preview">
+  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id, notFromAPIp: notFromAPIp}}" class="recipe-preview">
     <div class="recipe-body">
       <div class="text-center">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
@@ -83,7 +83,7 @@ export default {
         required: true
       }
     },
-    fromAPIp:{
+    notFromAPIp:{
       type: String
     }
   },
@@ -97,7 +97,7 @@ export default {
     },
     async checkIfFavorite() {
 
-      let  a= this.$props.fromAPIp;
+      let  a= this.$props.notFromAPIp;
       if(a == true){
 
       }

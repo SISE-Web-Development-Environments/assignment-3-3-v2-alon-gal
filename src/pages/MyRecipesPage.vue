@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <RecipePreviewList fromAPI = "true" reqType = "show" title="My Recipes" class="ShowRecipes"  />
+      <RecipePreviewList notFromAPI = "true" reqType = "show" title="My Recipes" class="ShowRecipes"  />
   </div>
 </template>
 

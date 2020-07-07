@@ -11,7 +11,7 @@
       </b-button-group>
     </div>
     <b-row v-for="r in recipes" :key="r.id">
-      <RecipePreview :fromAPIp="fromAPI"  v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r"/>
+      <RecipePreview :notFromAPIp="notFromAPI"  v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r"/>
     </b-row>
   </b-container>
 </template>
@@ -52,7 +52,7 @@ export default {
       type: String,
       required: false
     },
-    fromAPI:{
+    notFromAPI:{
       type: String
     }
   },

@@ -23,7 +23,7 @@
         <div class="wrapper">
           <div class="wrapped" style="margin-right: 10px;">
             <b>Ingredients:</b><br><br>
-            <ul v-if="$route.params.fromAPIp === 'true'" v-html="recipe.Ingredients">
+            <ul v-if="$route.params.notFromAPIp === 'true'" v-html="recipe.Ingredients">
             </ul>
             <ul v-else>
               <li
@@ -46,7 +46,7 @@
     <div class="options">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       <b-button
-        v-else-if="$root.store.username && $route.params.fromAPIp !== 'true'"
+        v-else-if="$root.store.username && $route.params.notFromAPIp !== 'true'"
         variant="warning"
         v-on:click="addToFavorites(recipe.id)"
       >
@@ -82,7 +82,7 @@ export default {
       let a;
       try {
         const id = this.$route.params.recipeId;
-        a = this.$route.params.fromAPIp;
+        a = this.$route.params.notFromAPIp;
         if(a=="true"){
         response = await this.axios.get(
           "https://assignment3-3-alon-gal.herokuapp.com/users/getRecipes/" + id
@@ -100,12 +100,14 @@ export default {
               recipe_id: id
             }
           );
+          if(a!="true"){
           await this.axios.post(
             "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched",
             {
               recipe_id: id
             }
           );
+          }
         }
         // console.log("response.status", response.status);
         if (response.status !== 200 && response.status !== 201) this.$router.replace("/NotFound");
