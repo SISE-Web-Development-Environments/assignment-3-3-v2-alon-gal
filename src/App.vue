@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar fixed="top" toggleable="lg" type="dark" variant="info">
+        <img class="icon" style="margin-right: 10px;" src="./assets/icon.png">
+        <b-navbar-brand href="#" style="font-family: myFirstFont; margin-right: 20px;">Crazy Taco</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -49,7 +50,7 @@
         </b-collapse>
       </b-navbar>
     </div>
-    <router-view />
+    <router-view style="padding-top: 73px" />
   </div>
 </template>
 
@@ -71,6 +72,11 @@ export default {
 
 <style lang="scss">
 @import "@/scss/form-style.scss";
+
+@font-face {
+  font-family: myFirstFont;
+  src: url(./assets/Kalam-Bold.ttf);
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

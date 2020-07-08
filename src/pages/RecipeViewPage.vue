@@ -14,9 +14,11 @@
                   <b-row>
                     <b-col class="bcol"><img class="icon" src="../assets/clock.png" style="  margin-right: 6px;" />Ready in {{ recipe.readyInMinutes }} minutes</b-col>
                     <b-col class="bcol"><img class="icon" src="../assets/like.png" style="  margin-right: 6px;" />Likes: {{ recipe.aggregateLikes }} likes</b-col>
+                    <b-col class="bcol"><img class="icon" src="../assets/dish.png" /> Servings: {{recipe.servings}} </b-col>
                     <b-col class="bcol" v-if="recipe.glutenFree"><img class="icon" src="../assets/glutenfree.png" /> Gluten Free</b-col>
                     <b-col class="bcol" v-if="recipe.vegetarian"><img class="icon" src="../assets/vegetarian.png" /> Vegetarian</b-col>
                     <b-col class="bcol" v-if="recipe.vegan"><img class="icon" src="../assets/vegan.png" /> Vegan</b-col>
+                    
                     </b-row>
               </b-container>
       <div class="recipe-body">
@@ -33,7 +35,7 @@
             </ul>
           </div>
           <div class="wrapped"><b>Instructions:</b><br><br>
-          <div v-html="recipe.instructions" style="width: 100%; padding-left: 20px; padding-right: 20px;"></div>
+          <div v-html="recipe.instructions" style="width: 100%; padding-left: 20px; padding-right: 20px; padding-bottom: 20px"></div>
           </div>
         </div>
       </div>

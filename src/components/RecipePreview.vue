@@ -34,11 +34,6 @@
 
 <script>
 export default {
-  mounted() {
-    this.axios.get(this.recipe.image).then(i => {
-      this.image_load = true;
-    });
-  },
   data() {
     return {
       isLoaded: false,
@@ -183,4 +178,6 @@ text-align: right;
   width: 45px;
   position:initial;
 }
+
+
 </style>

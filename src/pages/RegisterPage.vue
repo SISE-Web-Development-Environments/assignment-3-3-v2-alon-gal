@@ -292,6 +292,11 @@ export default {
             photoUrl: this.form.photoUrl
           }
         );
+        this.$root.toast(
+          "Registered Successfully",
+          "You have been registered successfully. Please log in",
+          "success"
+        );
         this.$router.push("/login");
         // console.log(response);
       } catch (err) {
