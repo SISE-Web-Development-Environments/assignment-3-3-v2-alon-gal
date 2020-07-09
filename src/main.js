@@ -32,7 +32,8 @@ import {
   NavPlugin,
   VBTooltipPlugin,
   IconsPlugin,
-  ModalPlugin
+  ModalPlugin,
+  AvatarPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -50,7 +51,8 @@ import {
   NavPlugin,
   VBTooltipPlugin,
   IconsPlugin,
-  ModalPlugin
+  ModalPlugin,
+  AvatarPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(SpinnerPlugin);
@@ -58,7 +60,8 @@ Vue.use(NavPlugin);
 Vue.use(DropdownPlugin);
 Vue.use(VBTooltipPlugin);
 Vue.use(IconsPlugin);
-Vue.use(ModalPlugin)
+Vue.use(ModalPlugin);
+Vue.use(AvatarPlugin);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
@@ -88,15 +91,20 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
-  login(username) {
+  photoUrl: localStorage.photoUrl,
+  login(username,photoUrl) {
     localStorage.setItem("username", username);
     this.username = username;
+    localStorage.setItem("photoUrl", photoUrl);
+    this.photoUrl = photoUrl;
     console.log("login", this.username);
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("photoUrl");
     this.username = undefined;
+    this.photoUrl = undefined;
   },
 };
 console.log(shared_data);

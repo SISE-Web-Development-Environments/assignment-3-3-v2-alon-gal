@@ -11,7 +11,8 @@
       <RecipePreviewList notFromAPI="false" reqType = "watched" title="Last watched recipes" class="RandomRecipes" />
       </div>
       <div v-else>
-        <br><h6> You need to Login to view this</h6>
+        <b-button squared variant="primary" :to="{ name: 'login' }"> <b-icon  icon="person-check"></b-icon> Login</b-button>
+         <b-button squared variant="info" style="margin-left: 10px" :to="{ name: 'register' }"><b-icon  icon="pencil-square"></b-icon> Register</b-button>
       <RecipePreviewList notFromAPI="false" reqType = "random" title="Last watched recipes" :class="{
         RandomRecipes: true,
         blur: !$root.store.username,

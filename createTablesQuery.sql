@@ -111,8 +111,8 @@ INSERT INTO Users
  ([userName],[firstname],[lastname], [password],[email],[photoUrl],[country])
 VALUES
     (N'test', N'TestF',N'TestL',N'$2b$10$6ocuirRNgNBNsIaWxwEGkOlSoavKMhcFPwAWq72Bi.tmM8ymj8wpW', N'test@test.com',N'testPhotoUrl',N'testCountry'),
-    (N'alongolo', N'Alon',N'Golombek',N'$2b$10$6ocuirRNgNBNsIaWxwEGkOlSoavKMhcFPwAWq72Bi.tmM8ymj8wpW', N'alongolo@post.bgu.ac.il',N'https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg',N'Israel'),
-    (N'galtad', N'Gal',N'Tadir',N'$2b$10$6ocuirRNgNBNsIaWxwEGkOlSoavKMhcFPwAWq72Bi.tmM8ymj8wpW', N'galtad@post.bgu.ac.il',N'https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg',N'Israel')
+    (N'alongolo', N'Alon',N'Golombek',N'$2b$10$6ocuirRNgNBNsIaWxwEGkOlSoavKMhcFPwAWq72Bi.tmM8ymj8wpW', N'alongolo@post.bgu.ac.il',N'https://i.imgur.com/j0CMQnv.jpg',N'Israel'),
+    (N'galtad', N'Gal',N'Tadir',N'$2b$10$6ocuirRNgNBNsIaWxwEGkOlSoavKMhcFPwAWq72Bi.tmM8ymj8wpW', N'galtad@post.bgu.ac.il',N'https://i.imgur.com/sAydL8a.jpg',N'Israel')
 GO
 
 

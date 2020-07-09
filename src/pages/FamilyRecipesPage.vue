@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-       <RecipePreviewList reqType = "show" title="My Family" class="ShowRecipes" />
+       <RecipeFamaliyPreviewList notFromAPI = "true" title="My Family Recipes" class="ShowRecipes" />
   </div>
 </template>
 
 <script>
-import RecipePreviewList from "../components/RecipePreviewList";
+import RecipeFamaliyPreviewList from "../components/RecipeFamaliyPreviewList";
 export default {
   
   name: "MyRecipesPage",
     components: {
-    RecipePreviewList
+    RecipeFamaliyPreviewList
   }
 };
 </script>

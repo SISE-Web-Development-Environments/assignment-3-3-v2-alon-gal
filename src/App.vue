@@ -11,6 +11,7 @@
           <b-navbar-nav>
             <b-nav-item active :to="{ name: 'main' }"> <b-icon  icon="house-fill"></b-icon> Home</b-nav-item>
             <b-nav-item active :to="{ name: 'search' }"><b-icon  icon="search"></b-icon> Search</b-nav-item>
+             <b-avatar style="margin-left: 10px" v-if="$root.store.username" variant="info" :src="$root.store.photoUrl"></b-avatar>
             <b-nav-item-dropdown 
               v-if="!$root.store.username"
               id="my-nav-dropdown"

@@ -103,7 +103,7 @@ export default {
         // console.log(response);
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
-        this.$root.store.login(this.form.username);
+        this.$root.store.login(this.form.username,response.data.user.photoUrl);
         this.$router.push("/");
       } catch (err) {
         this.$root.toast("Error", "Login failed. Please enter a valid Username and Password.", "danger");
