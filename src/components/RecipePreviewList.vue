@@ -11,7 +11,7 @@
       </b-button-group>
     </div>
     <b-row v-for="r in recipes" :key="r.id">
-      <RecipePreview :notFromAPIp="notFromAPI"  v-b-tooltip.hover title="View Recipe" class="recipePreview" :recipe="r"/>
+      <RecipePreview :notFromAPIp="notFromAPI" class="recipePreview" :recipe="r"/>
     </b-row>
   </b-container>
 </template>

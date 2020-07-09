@@ -1,6 +1,7 @@
 <template>
-  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id, notFromAPIp: notFromAPIp}}" class="recipe-preview">
-    <div class="recipe-body">
+<div class="recipe-preview">
+  <router-link :to="{name: 'recipe', params:{recipeId: recipe.id, notFromAPIp: notFromAPIp}}" >
+    <div  class="recipe-body" v-b-tooltip.hover title="View Recipe">
       <div class="text-center">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       </div>
@@ -25,11 +26,14 @@
         <img class="icon" src="../assets/vegan.png" /> Vegan
       </div>
     </div>
+    </router-link>
     <div class="recipe-icons">
-      <img v-if="isFavorite" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
+      <img v-if="isFavorite && $root.store.username" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
+      <img v-else-if="!isFavorite && $root.store.username" v-b-tooltip.hover title="Add to Favorites" src="../assets/star.png" class="star" @click="addToFavorites">
       <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
       </div>
-  </router-link>
+  
+</div>
 </template>
 
 <script>
@@ -119,6 +123,28 @@ export default {
             this.isWatched = true;
           }
         }
+      }
+    },
+    async addToFavorites() {
+      try {
+        await this.axios.post(
+          "https://assignment3-3-alon-gal.herokuapp.com/users/favorites",
+          {
+            recipe_id: this.$props.recipe.id
+          }
+        );
+        this.$root.toast(
+          "Added to Favorites",
+          "Recipe added successfully to your favorite list!",
+          "warning"
+        );
+        this.isFavorite = true;
+      } catch {
+        this.$root.toast(
+          "Already added",
+          "This recipe is already on your favorite list",
+          "primary"
+        );
       }
     }
   }

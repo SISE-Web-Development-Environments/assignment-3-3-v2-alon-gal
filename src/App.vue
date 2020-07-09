@@ -60,6 +60,7 @@ export default {
   name: "App",
   methods: {
     Logout() {
+      localStorage.clear();
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
 

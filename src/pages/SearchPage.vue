@@ -97,6 +97,32 @@
         show: true
       }
     },
+    mounted(){
+      // if(localStorage.form){
+      //   this.form=localStorage.form
+      // }
+      if(this.$root.store.username){
+        if(localStorage.search){
+          this.form.search=localStorage.search
+        }
+      if(localStorage.numOfResult){
+        this.form.numOfResult=localStorage.numOfResult
+      }
+      if(localStorage.cusine){
+        this.form.cusine=localStorage.cusine
+      }
+      if(localStorage.diet){
+        this.form.diet=localStorage.diet
+      }
+      if( localStorage.intolerances){
+        this.form.intolerances= localStorage.intolerances
+      }
+      if(localStorage.search){
+        this.flag = true
+        // this.componentKey += 1
+      }
+      }
+    },
     components: {
     RecipePreviewList
   },
@@ -105,6 +131,14 @@
         evt.preventDefault()
         this.flag = true
         this.componentKey += 1
+        if(this.$root.store.username){
+          localStorage.search=this.form.search
+          localStorage.numOfResult=this.form.numOfResult
+          localStorage.cusine=this.form.cusine
+          localStorage.diet=this.form.diet
+          localStorage.intolerances=this.form.intolerances
+        }
+        
         // alert(JSON.stringify(this.form))
       },
       onReset(evt) {
