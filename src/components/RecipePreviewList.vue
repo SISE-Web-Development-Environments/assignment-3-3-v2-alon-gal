@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>
+    <h3 style="font-family: helloSunshine;">
       {{ title }}:
       <slot></slot>
     </h3>

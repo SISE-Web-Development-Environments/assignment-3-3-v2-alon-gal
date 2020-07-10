@@ -29,7 +29,7 @@
     </router-link>
     <div class="recipe-icons">
       <img v-if="isFavorite && $root.store.username" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
-      <img v-else-if="!isFavorite && $root.store.username" v-b-tooltip.hover title="Add to Favorites" src="../assets/star.png" class="star" @click="addToFavorites">
+      <img v-else-if="!isFavorite && $root.store.username && notFromAPIp != 'true'" v-b-tooltip.hover title="Add to Favorites" src="../assets/star.png" class="star" @click="addToFavorites">
       <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
       </div>
   

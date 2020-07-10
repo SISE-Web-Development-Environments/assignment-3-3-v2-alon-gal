@@ -4,8 +4,8 @@
       <div class="text-center">
       
       </div>
-      <div class="recipe-header mt-3 mb-4">
-        <h1 class="title">{{ recipe.title }}</h1>
+      <div style="text-align: center;" class="recipe-header mt-3 mb-4">
+        <h1 class="title" >{ {{ recipe.title }} }</h1>
         <img :src="recipe.image" class="center" @load="onImgLoad" />
         <img v-if="isFavorite" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" style="display: inline-block;" class="star">
         <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
@@ -299,9 +299,8 @@ export default {
 }
 
 .title{
-   font: italic 1.2em "Fira Sans", serif; 
+  font-family: helloSunshine;
    font-size: 50px;
-   font-weight: bold;
    margin-bottom: 30px;
 }
 

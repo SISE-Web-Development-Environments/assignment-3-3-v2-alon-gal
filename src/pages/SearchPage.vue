@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Search Page</h1>
+    <h1 class="title" style="font-family: helloSunshine;">Search Page</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="input-group-2" label="Your Search:" label-for="input-2">
         <b-form-input

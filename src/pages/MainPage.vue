@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
+    <h1 class="title" style="font-family: helloSunshine;">{Main Page}</h1>
     <b-container class="bv-example-row">
   <b-row>
     <b-col><RecipePreviewList notFromAPI="false" reqType = "random" title="Explore These Recipes" class="RandomRecipes" :key="componentKey" />
@@ -11,6 +11,9 @@
       <RecipePreviewList notFromAPI="false" reqType = "watched" title="Last watched recipes" class="RandomRecipes" />
       </div>
       <div v-else>
+        <LoginPage/>
+      </div>
+      <!--<div v-else>
         <b-button squared variant="primary" :to="{ name: 'login' }"> <b-icon  icon="person-check"></b-icon> Login</b-button>
          <b-button squared variant="info" style="margin-left: 10px" :to="{ name: 'register' }"><b-icon  icon="pencil-square"></b-icon> Register</b-button>
       <RecipePreviewList notFromAPI="false" reqType = "random" title="Last watched recipes" :class="{
@@ -20,6 +23,7 @@
       }">
         </RecipePreviewList >
       </div>
+      </-->
     </b-col>
   </b-row>
     </b-container>
@@ -45,6 +49,7 @@
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import LoginPage from "../pages/LoginPage";
 export default {
     name: "Main",
     data(){
@@ -53,7 +58,8 @@ export default {
     }
   },  
   components: {
-    RecipePreviewList
+    RecipePreviewList,
+    LoginPage
   },
     methods:{
     onRefresh(){
@@ -75,4 +81,6 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+
+
 </style>

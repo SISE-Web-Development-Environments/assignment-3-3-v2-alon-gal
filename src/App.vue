@@ -43,8 +43,22 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-form>
               <b-nav-item active v-b-modal.modalPopover> <b-icon  icon="info-circle"></b-icon> About</b-nav-item>
-              <b-modal id="modalPopover" title="Modal with Popover" ok-only>
-                <p>test</p>
+              <b-modal id="modalPopover" title="About Us" ok-only>
+                <div style="text-align: center;">
+                <h2> Crazy Taco Team: </h2>
+                <h4> Alon Golombek 302361647 </h4>
+                <h6><b-icon  icon="envelope"/> alongolo@post.bgu.ac.il</h6>
+                <h4> Gal Tadir 312358054 </h4>
+                <h6><b-icon  icon="envelope"/> galtad@post.bgu.ac.il </h6><br>
+                <p> Web Development Environments - Final Course Project - Semester B 2020 </p>
+                <p> Ben Gurion University </p>
+                <p> Full Stack End-to-End Web Development</p>
+                <p> Previous Projects: </p>
+                <b-link href="https://sise-web-development-environments.github.io/assignment2-gal-alon/">Free Pacman Game</b-link><br>
+                <b-link href="https://sise-web-development-environments.github.io/302361647/">Arthur's Site</b-link><br>
+                <b-link href="https://sise-web-development-environments.github.io/assignment1-galtadir/">Lebron James</b-link>
+                
+                </div>
               </b-modal>
             </b-nav-form>
           </b-navbar-nav>
@@ -80,6 +94,8 @@ export default {
   src: url(./assets/Kalam-Bold.ttf);
 }
 
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -103,4 +119,10 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@font-face {
+  font-family: helloSunshine;
+  src: url(./assets/HelloSunshine.otf);
+}
+
 </style>

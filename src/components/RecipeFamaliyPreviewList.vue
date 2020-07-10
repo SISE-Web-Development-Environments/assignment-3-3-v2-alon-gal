@@ -1,9 +1,9 @@
 <template>
   <b-container>
-    <h1><b>
+    <h1 style="font-family: helloSunshine;">
       {{ title }}:
       <slot></slot>
-      </b>
+      
     </h1>
     <b-row v-for="r in recipes" :key="r.id">
       <FamaliyRecipe :notFromAPIp="notFromAPI"  class="recipePreview" :recipe="r"/>
