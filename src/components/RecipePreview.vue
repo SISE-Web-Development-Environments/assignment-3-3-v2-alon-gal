@@ -159,6 +159,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 .recipe-preview {
   display: inline-block;
@@ -173,6 +174,7 @@ export default {
   width: 100%;
   height: 150px;
   position: relative;
+  cursor: pointer;
 }
 
 .recipe-preview .recipe-body .text-center {
@@ -203,6 +205,7 @@ text-align: right;
   height: 45px;
   width: 45px;
   position:initial;
+  cursor: pointer;
 }
 
 

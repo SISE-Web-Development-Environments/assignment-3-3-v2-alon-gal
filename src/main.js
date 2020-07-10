@@ -33,7 +33,8 @@ import {
   VBTooltipPlugin,
   IconsPlugin,
   ModalPlugin,
-  AvatarPlugin
+  AvatarPlugin,
+  PaginationPlugin  
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -52,7 +53,8 @@ import {
   VBTooltipPlugin,
   IconsPlugin,
   ModalPlugin,
-  AvatarPlugin
+  AvatarPlugin,
+  PaginationPlugin  
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(SpinnerPlugin);
@@ -62,6 +64,7 @@ Vue.use(VBTooltipPlugin);
 Vue.use(IconsPlugin);
 Vue.use(ModalPlugin);
 Vue.use(AvatarPlugin);
+Vue.use(PaginationPlugin);
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent

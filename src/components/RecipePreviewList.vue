@@ -167,7 +167,4 @@ export default {
   min-height: 400px;
 }
 
-.recipePreview{
-  cursor: pointer;
-}
 </style>
