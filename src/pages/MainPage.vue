@@ -7,7 +7,7 @@
      <button type="button"  v-on:click="onRefresh" class="btn btn-primary">Refresh recipes</button>
     </b-col>
     <b-col>
-      <div v-if="$root.store.username">
+      <div v-if="$cookies.get('session')">
       <RecipePreviewList notFromAPI="false" reqType = "watched" title="Last watched recipes" class="RandomRecipes" />
       </div>
       <div v-else>
@@ -18,7 +18,7 @@
          <b-button squared variant="info" style="margin-left: 10px" :to="{ name: 'register' }"><b-icon  icon="pencil-square"></b-icon> Register</b-button>
       <RecipePreviewList notFromAPI="false" reqType = "random" title="Last watched recipes" :class="{
         RandomRecipes: true,
-        blur: !$root.store.username,
+        blur: !$cookies.get('session'),
         center: true
       }">
         </RecipePreviewList >
@@ -28,13 +28,13 @@
   </b-row>
     </b-container>
     
-    <!--<router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
+    <!--<router-link v-if="!$cookies.get('session')" to="/login" tag="button">You need to Login to vue this</router-link>
+    {{ !$cookies.get('session') }}
     <RecipePreviewList
       title="Last Viewed Recipes"
       :class="{
         RandomRecipes: true,
-        blur: !$root.store.username,
+        blur: !$cookies.get('session'),
         center: true
       }"
       disabled

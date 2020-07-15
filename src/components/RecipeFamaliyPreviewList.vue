@@ -46,7 +46,7 @@ export default {
 
 
         res = await this.axios.get(
-            "https://assignment3-3-alon-gal.herokuapp.com/users/family/"
+            "http://localhost:4000/users/family/"
           );
         for(let i = 0; i < res.data.myRecipes.length; i++){
           response.data.push(res.data.myRecipes[i]);

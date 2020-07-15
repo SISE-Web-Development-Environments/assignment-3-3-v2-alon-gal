@@ -48,7 +48,7 @@
     <div class="options">
         <b-spinner v-if="!isLoaded" variant="primary" label="Text Centered"></b-spinner>
       <b-button
-        v-else-if="$root.store.username && $route.params.notFromAPIp !== 'true'"
+        v-else-if="$cookies.get('session') && $route.params.notFromAPIp !== 'true'"
         variant="warning"
         v-on:click="addToFavorites(recipe.id)"
       >
@@ -87,24 +87,24 @@ export default {
         a = this.$route.params.notFromAPIp;
         if(a=="true"){
         response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/getRecipes/" + id
+          "http://localhost:4000/users/getRecipes/" + id
         );
         }
         else{
         response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + id
+          "http://localhost:4000/recipes/getRecipe/" + id
         );
         }
-        if (this.$root.store.username) {
+        if (this.$cookies.get('session')) {
           await this.axios.post(
-            "https://assignment3-3-alon-gal.herokuapp.com/users/watched",
+            "http://localhost:4000/users/watched",
             {
               recipe_id: id
             }
           );
           if(a!="true"){
           await this.axios.post(
-            "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched",
+            "http://localhost:4000/users/lastThreeWatched",
             {
               recipe_id: id
             }
@@ -205,7 +205,7 @@ export default {
     async addToFavorites(rcpid) {
       try {
         await this.axios.post(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favorites",
+          "http://localhost:4000/users/favorites",
           {
             recipe_id: rcpid
           }
@@ -225,9 +225,9 @@ export default {
       }
     },
         async checkIfFavorite() {
-      if (this.$root.store.username) {
+      if (this.$cookies.get('session')) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId"
+          "http://localhost:4000/users/favoritesId"
         );
         let rcpid = this.recipe.id;
         for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
@@ -238,9 +238,9 @@ export default {
       }
     },
         async checkIfWatched() {
-      if (this.$root.store.username) {
+      if (this.$cookies.get('session')) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/watched"
+          "http://localhost:4000/users/watched"
         );
         let rcpid = this.recipe.id;
         for (let i = 0; i < response.data.myRecipes.length; i++) {

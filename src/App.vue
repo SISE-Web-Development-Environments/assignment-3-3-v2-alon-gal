@@ -11,9 +11,9 @@
           <b-navbar-nav>
             <b-nav-item active :to="{ name: 'main' }"> <b-icon  icon="house-fill"></b-icon> Home</b-nav-item>
             <b-nav-item active :to="{ name: 'search' }"><b-icon  icon="search"></b-icon> Search</b-nav-item>
-             <b-avatar style="margin-left: 10px" v-if="$root.store.username" variant="info" :src="$root.store.photoUrl"></b-avatar>
+             <b-avatar style="margin-left: 10px" v-if="$cookies.get('session')" variant="info" :src="$root.store.photoUrl"></b-avatar>
             <b-nav-item-dropdown 
-              v-if="!$root.store.username"
+              v-if="!$cookies.get('session')"
               id="my-nav-dropdown"
               text="Hello Guest"
               toggle-class="nav-link-custom"
@@ -76,11 +76,18 @@ export default {
     Logout() {
       localStorage.clear();
       this.$root.store.logout();
-      this.$root.toast("Logout", "User logged out successfully", "success");
-
+      this.$cookies.remove("session");
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });
+      this.$router.go(0);
+      this.$root.toast("Logout", "User logged out successfully", "success");
+    },
+    checkCookie(){
+      if(this.$cookies.get("session")){
+        return true;
+      }
+      return false;
     }
   }
 };

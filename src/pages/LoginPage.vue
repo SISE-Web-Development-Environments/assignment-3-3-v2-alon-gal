@@ -94,7 +94,7 @@ export default {
     async Login() {
       try {
         const response = await this.axios.post(
-          "https://assignment3-3-alon-gal.herokuapp.com/login",
+          "http://localhost:4000/login",
           {
             userName: this.form.username,
             password: this.form.password
@@ -109,7 +109,9 @@ export default {
         this.$root.toast("Error", "Login failed. Please enter a valid Username and Password.", "danger");
         console.log(err.response);
         this.form.submitError = err.response.data.message;
+        return;
       }
+      this.$router.go(0);
     },
     onLogin() {
       // console.log("login method called");

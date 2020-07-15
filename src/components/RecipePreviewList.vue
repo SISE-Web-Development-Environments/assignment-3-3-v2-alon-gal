@@ -91,15 +91,15 @@ export default {
 
         if(type === "random"){
         response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRandomRecipes/3"
+          "http://localhost:4000/recipes/getRandomRecipes/3"
         );
         } else if(type === "watched"){
           response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/lastThreeWatched/"
+          "http://localhost:4000/users/lastThreeWatched/"
           );
         } else if(type === "show"){
           res = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/getMyRecipes/"
+          "http://localhost:4000/users/getMyRecipes/"
           
         );
         for(let i = 0; i < res.data.myRecipes.length; i++){
@@ -113,7 +113,7 @@ export default {
           const dietSearch = this.$props.diet
           const intolerancesSearch = this.$props.intolerances
           var counter = 0
-          var toSend = "https://assignment3-3-alon-gal.herokuapp.com/recipes/searchRecipes/query/" + search + "/" + number
+          var toSend = "http://localhost:4000/recipes/searchRecipes/query/" + search + "/" + number
           if(cusineSearch!=""|| dietSearch!="" || intolerancesSearch!=""){
             toSend=toSend+"?"
             if(cusineSearch!=""){
@@ -137,12 +137,12 @@ export default {
           response = await this.axios.get(toSend);
         }        else if(type === "showFavorite"){
           res = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId/"
+          "http://localhost:4000/users/favoritesId/"
           
         );
         for(let i = 0; i < res.data.favoriteRecipes.length; i++){
           rcp = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/recipes/getRecipe/" + res.data.favoriteRecipes[i]
+          "http://localhost:4000/recipes/getRecipe/" + res.data.favoriteRecipes[i]
         );
           response.data.push(rcp.data);
         }

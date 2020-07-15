@@ -28,8 +28,8 @@
     </div>
     </router-link>
     <div class="recipe-icons">
-      <img v-if="isFavorite && $root.store.username" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
-      <img v-else-if="!isFavorite && $root.store.username && notFromAPIp != 'true'" v-b-tooltip.hover title="Add to Favorites" src="../assets/star.png" class="star" @click="addToFavorites">
+      <img v-if="isFavorite && $cookies.get('session')" v-b-tooltip.hover title="Favorite Recipe" src="../assets/star2.png" class="star">
+      <img v-else-if="!isFavorite && $cookies.get('session') && notFromAPIp != 'true'" v-b-tooltip.hover title="Add to Favorites" src="../assets/star.png" class="star" @click="addToFavorites">
       <img v-if="isWatched" v-b-tooltip.hover title="Watched Recipe" src="../assets/watched.png" class="star">
       </div>
   
@@ -100,9 +100,9 @@ export default {
       if(a == true){
 
       }
-      if (this.$root.store.username) {
+      if (this.$cookies.get('session')) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favoritesId"
+          "http://localhost:4000/users/favoritesId"
         );
         let rcpid = this.$props.recipe.id;
         for (let i = 0; i < response.data.favoriteRecipes.length; i++) {
@@ -113,9 +113,9 @@ export default {
       }
     },
     async checkIfWatched() {
-      if (this.$root.store.username) {
+      if (this.$cookies.get('session')) {
         let response = await this.axios.get(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/watched"
+          "http://localhost:4000/users/watched"
         );
         let rcpid = this.$props.recipe.id;
         for (let i = 0; i < response.data.myRecipes.length; i++) {
@@ -128,7 +128,7 @@ export default {
     async addToFavorites() {
       try {
         await this.axios.post(
-          "https://assignment3-3-alon-gal.herokuapp.com/users/favorites",
+          "http://localhost:4000/users/favorites",
           {
             recipe_id: this.$props.recipe.id
           }

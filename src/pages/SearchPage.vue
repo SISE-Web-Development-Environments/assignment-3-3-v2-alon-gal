@@ -101,7 +101,7 @@
       // if(localStorage.form){
       //   this.form=localStorage.form
       // }
-      if(this.$root.store.username){
+      if(this.$cookies.get('session')){
         if(localStorage.search){
           this.form.search=localStorage.search
         }
@@ -131,7 +131,7 @@
         evt.preventDefault()
         this.flag = true
         this.componentKey += 1
-        if(this.$root.store.username){
+        if(this.$cookies.get('session')){
           localStorage.search=this.form.search
           localStorage.numOfResult=this.form.numOfResult
           localStorage.cusine=this.form.cusine
